@@ -7,7 +7,7 @@ a=1
 no=1
 
 satu(){
-until [ $a -eq 28 ]
+until [ $a -eq 29 ]
 do
  name="pdkt_kusuma_$no"
  #echo $name
@@ -31,7 +31,6 @@ ber=1
 finddup(){
  dir="/home/el/Downloads/"
  find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -dD | awk -F" " 'NR%2==0 {print $2}' > /home/el/Downloads/duplicate.log
-# sed -i 's/"."/$dir/g' /home/el/Downloads/duplicate.log
 }
 
 finddup
