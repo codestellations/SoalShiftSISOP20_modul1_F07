@@ -28,4 +28,8 @@ fi
 done
 
 
+if [[ $pass_file =~ ^[a-zA-Z]+$ ]]; then
 echo $pass >> $pass_file.txt
+else
+echo "Please input file name in alphabet only";
+fi
