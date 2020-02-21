@@ -31,7 +31,11 @@ done
 echo "Please input your file name: "
 read pass_file
 
+if [[ $pass_file =~ ^[a-zA-Z]+$ ]]; then
 echo $pass >> $pass_file.txt
+else
+echo "Please input file name in alphabet only";
+fi
 
 #Soal 2.c : enkripsi string manipulation disesuaikan dengan jam dibuatnya file
 
