@@ -29,11 +29,17 @@ num=1
 ber=1
 
 finddup(){
- dir="/home/el/Downloads/"
- find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -dD | awk -F" " 'NR%2==0 {print $2}' > /home/el/Downloads/duplicate.log
+ find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -dD > /home/el/Downloads/duplicate.log
+ sed -i "s|\./|	|g" duplicate.log >> /home/el/Downloads/duplicate.log
 }
 
-finddup
+dup(){
+ for file in $dupi
+ do
+  mv "$file" /home/el/Downloads/duplikat/"duplikat_$ber"
+  ber=$((ber + 1))
+ done
+}
 
 ken(){
  for file in pdkt_kusuma_*
@@ -43,13 +49,14 @@ ken(){
  done
 }
 
-dup(){
- for file in pdkt_kusuma_*
- do
-  mv "$file" /home/el/Downloads/duplikat/"duplikat_$ber"
-  ber=$((ber + 1))
- done
-}
+#tiga(){
+ finddup
 
-#ken
-#dup
+ dupi=$(awk -F $'\t' 'NR%2==0 {print $2}' duplicate.log)
+
+ dup
+ ken
+
+ cp wget.log{,.bak}
+ rm duplicate.log
+#}

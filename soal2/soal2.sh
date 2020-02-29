@@ -38,6 +38,7 @@ echo "Please input file name in alphabet only";
 fi
 
 #Soal 2.c : enkripsi string manipulation disesuaikan dengan jam dibuatnya file
-
+low=abcdefghijklmnopqrstuvwxyz
+up=ABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 #Soal 2.d : dekripsi supaya nama file bisa kembali
