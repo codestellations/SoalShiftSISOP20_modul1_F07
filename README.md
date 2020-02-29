@@ -117,6 +117,25 @@ berikut adalah penjalasan masing-masing fungsi :
 ---
 
 ### c. Enkripsi Nama File
+~~~
+#!/bin/bash
+file_encrypt=$(basename "$1" .txt)
+hour=$(date "+%H" -r $1)
+while [ $hour -gt 0 ]
+do
+	file_encrypt=$(echo "$file_encrypt" | tr '[A-Za-z]' '[B-ZAb-za]')
+	hour=$((hour-1))
+done
+mv "$1" /home/liizza/password/"$file_encrypt.txt"
+~~~
+penjelasan:
+ - `file_encrypt=$(basename "$1" .txt)` basename digunakan untuk mengambil nama file saja dari string tanpa direktori dan ekstensi file. Sedangkan $1 menunjukkan argumen 1.
+ - `hour=$(date "+%H" -r $1)` variabel hour digunakan untuk menyimpan data jam (yang sudah diambil dengan date "+%H") berdasarkan kapan file itu ($1) dibuat.
+ - `file_encrypt=$(echo "$file_encrypt" | tr '[A-Za-z]' '[B-ZAb-za]')` variabel file_encrypt digunakan untuk menggeser  setiap alphabet pada nama file sebanyak 1 kali, karena a menjadi b, b menjadi c dan seterusnya.
+ - `hour=$((hour-1))` perulangan untuk pergeseran alphabet akan dilakukan sebanyak variabel hour.
+ - `mv "$1" /home/liizza/password/"$file_encrypt.txt"` melakukan penamaan ulang (rename) pada file yang telah dienkripsi.
+---
+
 ### d. Dekripsi Nama File
 
 ---
