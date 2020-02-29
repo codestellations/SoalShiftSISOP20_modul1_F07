@@ -17,7 +17,7 @@ do
 done
 }
 
-satu
+#satu
 
 #Soal 3.c : script identifikasi gambar identik dari keseluruhan gambar yang didownload
 #           duplikat diberi nama "duplicate_no" dan dipindah ke folder ./duplicate dengan nama "kenangan_no"
@@ -49,14 +49,13 @@ ken(){
  done
 }
 
-#tiga(){
- finddup
 
- dupi=$(awk -F $'\t' 'NR%2==0 {print $2}' duplicate.log)
+finddup
 
- dup
- ken
+dupi=$(awk -F $'\t' 'NR%2==0 {print $2}' duplicate.log)
 
- cp wget.log{,.bak}
- rm duplicate.log
-#}
+dup
+ken
+
+cp wget.log{,.bak}
+rm duplicate.log
