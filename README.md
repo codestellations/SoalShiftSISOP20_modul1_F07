@@ -1,5 +1,7 @@
 # SoalShiftSISOP20_modul1_F07
 Repository Modul 1 praktikum mata kuliah Sistem Operasi 2020
+Erlinda Argyanti Nugraha (05111840000017)
+Lii'zza Aisyah Putri Sulistio (05111840000073)
 
 ## Soal 1
 Diberikan file `Sample-Superstore.tsv`, diminta laporan berupa :
