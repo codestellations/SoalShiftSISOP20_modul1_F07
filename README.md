@@ -68,7 +68,58 @@ berikut adalah penjalasan masing-masing fungsi :
 ---
 
 ## Soal 2
+### a. Generate Random Password dan b. Menyimpan File dengan Ekstensi .txt dan Hanya Terdiri dari Alphabet Saja
+[soal2_password.sh](https://github.com/codestellations/SoalShiftSISOP20_modul1_F07/blob/master/soal2/soal2_password.sh)
+~~~
+ #!/bin/bash
+    echo "Please input your file name here: "
+    read pass_file #variabel untuk menyimpan nama file
+    genpass() #fungsi untuk membuat password random
+    {
+	    pass=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 28)
+    }
+    i=0
+    while [ $i -eq 0 ]
+    do
+	    if [[ $pass=~ [A-Z] ]]
+	    then
+		    if [[ $pass=~[a-z] ]]
+		    then
+				 if [[ $pass=~[0-9] ]]
+				 then i=1
+				 else genpass
+				 fi
+			else genpass
+		else genpass
+	fi
+	done
+	if [[ $pass_file =~ ^[A-Za-z]+$ ]]; then #mengecek nama file
+	echo $pass >> "home/liizza/password/$pass_file.txt"
+	echo "Congratulations!"
+	else
+	echo "Please input file name in alphabet only"
+	fi
+ ~~~
+ penjelasan:
+ - `read pass_file` bertujuan untuk memasukkan nama file oleh user yang akan digunakan untuk menyimpan password nantinya.
+ - `/dev/urandom` digunakan untuk menghasilkan karakter acak.
+ - `tr -dc A-Za-z0-9` digunakan agar hanya mengambil karakter huruf kapital (A-Z), huruf kecil (a-z) dan angka (0-9) saja berdasarkan `/dev/urandom` tadinya.
+ - `head -c 28` digunakan agar hanya mengambil 28 karakter awal dari output perintah sebelumnya. 
+ -  `i=0` i diset 0 terlebih dahulu.
+ - `if [[ [$pass=~ [A-Z] ]]` digunakan untuk mengecek apakah pass sudah mengandung huruf kapital.
+ - `if [[ [$pass=~[a-z] ]]` digunakan untuk mengecek apakah pass sudah mengandung huruf kecil.
+ - `if [[ [$pass=~[0-9] ]]` digunakan untuk mengecek apakah pass sudah mengandung angka.
+ - jika `i=1` maka password sudah sesuai dengan ketentuan yang diinginkan, sehingga loop akan berhenti.
+ - `if [[ $pass_file =~ ^[A-Za-z]+$ ]];` digunakan untuk mengecek apakah nama file sudah terdiri dari huruf alphabet saja, baik huruf kapital maupun huruf kecil.
+ - `echo $pass >> "home/liizza/password/$pass_file.txt"` digunakan untuk menyimpan password yang sudah dihasilkan ke dalam nama file dengan format file .txt
+ - `echo "Congratulations!"` jika nama file sudah sesuai dengan ketentuan perintah sebelumnya.
+ - `echo "Please input file name in alphabet only"` jika nama file tidak sesuai dengan ketentuan perintah sebelumnya.
+---
 
+### c. Enkripsi Nama File
+### d. Dekripsi Nama File
+
+---
 
 ## Soal 3
 ### a. Mendownload 28 gambar dari "https://loremflickr.com/320/240/cat" dengan command wget dan menyimpan log messages wget dalam "wget.log"
