@@ -117,6 +117,7 @@ berikut adalah penjalasan masing-masing fungsi :
 ---
 
 ### c. Enkripsi Nama File
+[soal 2c enkripsi](https://github.com/codestellations/SoalShiftSISOP20_modul1_F07/blob/master/soal2/soal2_enkripsi.sh)
 ~~~
 #!/bin/bash
 file_encrypt=$(basename "$1" .txt)
@@ -131,13 +132,30 @@ mv "$1" /home/liizza/password/"$file_encrypt.txt"
 penjelasan:
  - `file_encrypt=$(basename "$1" .txt)` basename digunakan untuk mengambil nama file saja dari string tanpa direktori dan ekstensi file. Sedangkan $1 menunjukkan argumen 1.
  - `hour=$(date "+%H" -r $1)` variabel hour digunakan untuk menyimpan data jam (yang sudah diambil dengan date "+%H") berdasarkan kapan file itu ($1) dibuat.
- - `file_encrypt=$(echo "$file_encrypt" | tr '[A-Za-z]' '[B-ZAb-za]')` variabel file_encrypt digunakan untuk menggeser  setiap alphabet pada nama file sebanyak 1 kali, karena a menjadi b, b menjadi c dan seterusnya.
+ - `file_encrypt=$(echo "$file_encrypt" | tr '[A-Za-z]' '[B-ZAb-za]')` variabel file_encrypt digunakan untuk menggeser setiap alphabet pada nama file sebanyak 1 kali, karena a menjadi b, b menjadi c dan seterusnya.
  - `hour=$((hour-1))` perulangan untuk pergeseran alphabet akan dilakukan sebanyak variabel hour.
  - `mv "$1" /home/liizza/password/"$file_encrypt.txt"` melakukan penamaan ulang (rename) pada file yang telah dienkripsi.
 ---
 
 ### d. Dekripsi Nama File
-
+[soal 2d dekripsi](https://github.com/codestellations/SoalShiftSISOP20_modul1_F07/blob/master/soal2/soal2_dekripsi.sh)
+~~~
+#!/bin/bash
+file_decrypt=$(basename "$1" .txt)
+hour=$(date "+%H" -r $1)
+while [ $hour -gt 0 ]
+do
+file_decrypt=$(echo "$file_decrypt" | tr '[A-Za-z]' '[ZA-Yza-y]')
+hour=$((hour-1))
+done
+mv "$1" /home/liizza/password/"$file_decrypt.txt"
+~~~
+penjelasan:
+- `file_decrypt=$(basename "$1" .txt)` basename digunakan untuk mengambil nama file saja dari string tanpa direktori dan ekstensi file. Sedangkan $1 menunjukkan argumen 1.
+ - `hour=$(date "+%H" -r $1)` variabel hour digunakan untuk menyimpan data jam (yang sudah diambil dengan date "+%H") berdasarkan kapan file itu ($1) dibuat.
+ - `file_decrypt=$(echo "$file_decrypt" | tr '[A-Za-z]' '[ZA-Yza-y]')` variabel file_decrypt digunakan untuk menggeser setiap alphabet pada nama file sebanyak 1 kali, namun pergeserannya merupakan kebalikan dari enkripsi. Pergeseran yang dilakukan adalah dengan menggeser ke kiri sebanyak 1 kali yaitu a menjadi z, b menjadi a dan seterusnya.
+ - `hour=$((hour-1))` perulangan untuk pergeseran alphabet akan dilakukan sebanyak variabel hour.
+ - `mv "$1" /home/liizza/password/"$file_decrypt.txt"` melakukan penamaan ulang (rename) pada file yang telah didekripsi.
 ---
 
 ## Soal 3
